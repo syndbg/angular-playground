@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head>
+    <title></title>
+    <style>
+      .done {
+        background-color: green;
+      }
+      .pending {
+        background-color: red;
+      }
+    </style>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+
+    <div ng-repeat="(author, note) in ctrl.notes">
+        <span class="label" ng-bind="note.label"></span>
+        <span class="status" ng-bind="author"></span>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript">
+      angular.module('notesApp', [])
+        .controller('MainCtrl', [function() {
+          var that = this;
+          that.notes = {
+            me: {
+              id: 1,
+              label: 'first',
+              done: false
+            },
+            you: {
+              id: 2,
+              label: 'second',
+              done: true
+            }
+          };
+      }]);
+    </script>
+</body>
+</html>
