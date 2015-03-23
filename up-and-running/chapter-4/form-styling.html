@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head>
+  <title></title>
+  <style>
+    .username.ng-valid {
+      background-color: #AF0F;
+    }
+    .username.ng-dirty.ng-invalid-required {
+      background-color: red;
+    }
+    .username.ng-dirty.ng-invalid-minlength {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+
+  <form ng-submit="ctrl.submit()" name="userForm">
+    <input type="text" name="username" class="username" required ng-model="ctrl.user.username" ng-minlength="4">
+    <span ng-show="userForm.username.$error.required">
+      This is a required field.
+    </span>
+    <span ng-show="userForm.username.$error.minlength">
+      This field must be at least 4 characters.
+    </span>
+    <span ng-show="userForm.username.$invalid">
+      This field is invalid.
+    </span>
+    <input type="password" name="password" required ng-mode="ctrl.user.password">
+    <span ng-show="userForm.password.$error.required">
+      This field is required.
+    </span>
+    <input type="submit" value="Submit" ng-disabled="userForm.$invalid">
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('notesApp', [])
+      .controller('MainCtrl', [function() {
+        var self = this;
+        self.submit = function() {
+          console.log('First form submit with ', self.user);
+        };
+      }]);
+  </script>
+</body>
+</html>

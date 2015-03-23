@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head>
+  <title></title>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+
+  <form ng-submit="ctrl.submit()" name="userForm">
+    <input type="text" required ng-model="ctrl.user.username" ng-minlength="4">
+    <input type="password" required ng-mode="ctrl.user.password">
+    <input type="submit" value="Submit" ng-disabled="userForm.$invalid">
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script type="text/javascript">
+    angular.module('notesApp', [])
+      .controller('MainCtrl', [function() {
+        var self = this;
+        self.submit = function() {
+          console.log('First form submit with ', self.user);
+        };
+      }]);
+  </script>
+</body>
+</html>
